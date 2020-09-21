@@ -24,26 +24,34 @@
 //Érdemes már ezt a kódot szétbontani, túl nagy a függvény, 1 inkább csak 5-6 soros legyen, szervezzük szét
 
 function calcAmount() {
-    let price = 1000;
-    let amountInput = document.querySelector("input[name='amount-input']");
-    let amountNumber = parseInt(amountInput.value);
-    
-    amountNumber = isNaN(amountNumber) ? 0 : amountNumber;
-    
-    showSumPrice(price, amountNumber);
+  let price = 1000;
+  let amountInput = document.querySelector("input[name='amount-input']");
+  let amountNumber = parseInt(amountInput.value);
+  amountNumber = isNaN(amountNumber) ? 0 : amountNumber;
+
+  showSumPrice(price, amountNumber);
 }
 
 function showSumPrice(price, amountNumber) {
-    amountNumber = amountNumber || 0;
+  amountNumber = amountNumber || 0;
+
+  if (amountNumber > 10) {
+    alert("Maximum 10 terméket vásárolhat!");
+    //return; (nem is kell, mert végül else ágba tettük a rendes működést)
+  } else if (amountNumber < 1) {
+    alert("Minimum 1 terméket kell vásárolnia!");
+  } else {
     let showAmount = document.querySelector("span.show-amount");
-    if (amountNumber > 10) {
-        alert("Maximum 10 terméket vásárolhat!");
-        //return; (nem is kell, mert végül else ágba tettük a rendes működést)
-    } else if (amountNumber < 1) {
-        alert("Minimum 1 terméket kell vásárolnia!");
-    } else {
-        let amount = amountNumber * price; //itt helyettesítettük végül az amountNumer változóval a parseInt(amountInput.value) -t
-        showAmount.innerHTML = amount;
-    }
+    let amount = amountNumber * price + radioCheck() * amountNumber;
+    //itt helyettesítettük végül az amountNumer változóval a parseInt(amountInput.value) -t
+
+    showAmount.innerHTML = amount;
+
+  }
 }
 
+function radioCheck() {
+  let radioButtons = document.querySelector("input[name='optradio']:checked");
+  let radioValue = parseInt(radioButtons.value);
+  return radioValue;
+}
