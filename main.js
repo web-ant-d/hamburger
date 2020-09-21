@@ -42,11 +42,11 @@ function showSumPrice(price, amountNumber) {
     alert("Minimum 1 terméket kell vásárolnia!");
   } else {
     let showAmount = document.querySelector("span.show-amount");
-    let amount = amountNumber * price + radioCheck() * amountNumber;
+    let amount =
+      amountNumber * price + radioCheck() * amountNumber + sauceCheck();
     //itt helyettesítettük végül az amountNumer változóval a parseInt(amountInput.value) -t
 
     showAmount.innerHTML = amount;
-
   }
 }
 
@@ -54,4 +54,10 @@ function radioCheck() {
   let radioButtons = document.querySelector("input[name='optradio']:checked");
   let radioValue = parseInt(radioButtons.value);
   return radioValue;
+}
+
+function sauceCheck() {
+  let sauceCheck = document.querySelector("option:checked");
+  let sauce = parseInt(sauceCheck.value);
+  return sauce;
 }
