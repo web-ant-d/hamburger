@@ -43,7 +43,7 @@ function showSumPrice(price, amountNumber) {
   } else {
     let showAmount = document.querySelector("span.show-amount");
     let amount =
-      amountNumber * price + radioCheck() * amountNumber + sauceCheck();
+      amountNumber * price + radioCheck() + sauceCheck() * amountNumber;
     //itt helyettesítettük végül az amountNumer változóval a parseInt(amountInput.value) -t
 
     showAmount.innerHTML = amount;
